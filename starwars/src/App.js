@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import CardList from './components/CardList';
+
 import './App.css';
 
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
-  const [char, setChar] = useState([]);
-  console.log(state)
+  const [character, setCharacter] = useState([]);
+  
 
   
   useEffect(() => {
     axios.get(`https://swapi.co/api/people/`)
-      .then(response => setState(response.data.results))
+      .then(response => setCharacter(response.data.results))
       .catch(err => console.log(err));
   }, []);
 
@@ -23,7 +25,10 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
-        {}
+        <CardList character={character}/>
+
+
+
       
     </div>
   );
@@ -32,3 +37,5 @@ const App = () => {
 
 
 export default App;
+
+
